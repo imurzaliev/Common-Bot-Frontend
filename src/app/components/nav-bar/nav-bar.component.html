@@ -3,7 +3,20 @@
     <button mat-button routerLink="/">TBot</button>
 
     <span class="spacer"></span>
-    <button mat-button routerLink="/register">Register</button>
-    <button mat-button routerLink="/login">Login</button>
+
+    <!-- login and registration buttons are visible only when user is logged out -->
+    <button mat-button *ngIf="!_authService.loggedIn()" routerLink="/register">
+      Register
+    </button>
+    <button mat-button *ngIf="!_authService.loggedIn()" routerLink="/login">
+      Login
+    </button>
+    <button
+      mat-button
+      *ngIf="_authService.loggedIn()"
+      (click)="!_authService.loggedIn()"
+    >
+      Logout
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
